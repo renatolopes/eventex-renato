@@ -14,7 +14,6 @@ from ..forms import SubscriptionForm
 from django.core import mail
 from django.conf import settings
 
-from .test_urls import  *
 from .test_models import  *
 from .test_views_subscribe import *
 from .test_views_success import *

@@ -1,10 +1,12 @@
 # coding: utf-8
 from django.core.urlresolvers import reverse, resolve
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.views.generic.simple import direct_to_template
 from .forms import SubscriptionForm
 from django.core.mail import send_mail
 from django.conf import settings
+from .models import Subscription
+from django.shortcuts import get_object_or_404
 
 def subscribe(request):
     if request.method == 'POST':
@@ -33,7 +35,5 @@ def create(request):
                                 args=[subscription.pk]))
 
 def success(request, pk):
-    #from django.conf import settings
-   # context = RequestContext(request, pk)
-    #return render_to_response('index.html', context, pk)
-    return HttpResponse(pk)
+    subscription = get_object_or_404(Subscription, pk=pk)
+    return direct_to_template(request, "subscriptions/subscription_detail.html", { 'subscription': subscription})
