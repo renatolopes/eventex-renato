@@ -1,26 +1,11 @@
 # coding: utf-8
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
+__author__ = 'Renato'
 
 from django.test import TestCase
 from django.core.urlresolvers import reverse, resolve
-from .models import Subscription
+from ..models import Subscription
 from django.db import IntegrityError
-
-class SubscriptionsUrlTest(TestCase):
-    def test_get_subscribe_page(self):
-        url = reverse('subscriptions:subscribe')
-        response = self.client.get(url)
-        self.assertEquals(200, response.status_code)
-
-    def test_get_success_page(self):
-        url = reverse('subscriptions:success', args=[1])
-        response = self.client.get(url)
-        self.assertEquals(200, response.status_code)
+from ..forms import SubscriptionForm
 
 class SubscriptionModelTest(TestCase):
     # 1) o modelo deve ter os campos: name, cpf, email, phone, create_at
@@ -46,9 +31,9 @@ class SubscriptionModelUniqueTest(TestCase):
     def test_cpf_must_be_unique(self):
         # Instancia a inscrição com CPF existente
         s =  Subscription(name='Renato Lopes',
-        cpf='12862577700',
-        email="outroemail@email.com",
-        phone='21-96186180')
+            cpf='12862577700',
+            email="outroemail@email.com",
+            phone='21-96186180')
 
         # Verifica se ocorre o erro de integridade ao persistir
         self.assertRaises(IntegrityError, s.save)
