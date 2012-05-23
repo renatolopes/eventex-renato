@@ -12,4 +12,4 @@ Scripts
 *.pwc
 .DS_Store
 .idea
-
+*.db

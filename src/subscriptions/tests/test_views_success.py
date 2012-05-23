@@ -4,6 +4,7 @@ __author__ = 'Renato'
 from django.test import TestCase
 from django.core.urlresolvers import reverse, resolve
 from ..models import Subscription
+from django.conf import settings
 
 class SucessViewTest(TestCase):
     def setUp(self):
@@ -23,7 +24,7 @@ class SucessViewTest(TestCase):
         self.assertIsInstance(subscription, Subscription)
 
     def test_html(self):
-        self.assertContains(self.resp, 'Renato Lopes')
+        self.assertNotContains(self.resp, settings.TEMPLATE_STRING_IF_INVALID)
 
 class SuccessViewNotFound:
     def test_not_found(self):

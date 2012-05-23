@@ -22,6 +22,8 @@ if 'True' == os.environ.get('SEND_EMAIL', 'False'):
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+TEMPLATE_STRING_IF_INVALID = "INVALID CONTEXT"
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -136,9 +138,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
     'src.core',
     'src.subscriptions',
 )
